@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
+    Query,
+} from '@nestjs/common';
 import { CreateMusicDto } from './DTO/create-music.dto';
 import { UpdateMusicDto } from './DTO/update-music.dto';
 import { Music } from './entities/music.entity';

@@ -6,7 +6,7 @@ import { AppModule } from './../src/app.module';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
@@ -91,6 +91,18 @@ describe('AppController (e2e)', () => {
         .get("/music/999")
         .expect(404)
     })
+    it("PATCH 200", () => {
+      return request(app.getHttpServer())
+        .patch("/music/1")
+        .send({ title: "new title" })
+        .expect(200)
+    })
+    it("PATCH 404", () => {
+      return request(app.getHttpServer())
+        .patch("/music/999")
+        .send({ title: "new title" })
+        .expect(404)
+    })
     it("DELETE 200", () => {
       return request(app.getHttpServer())
         .delete("/music/1")
@@ -99,18 +111,6 @@ describe('AppController (e2e)', () => {
     it("DELETE 404", () => {
       return request(app.getHttpServer())
         .delete("/music/999")
-        .expect(404)
-    })
-    it("PATCH 200", () => {
-      return request(app.getHttpServer())
-        .patch("/movies/1")
-        .send({ title: "new title" })
-        .expect(200)
-    })
-    it("PATCH 404", () => {
-      return request(app.getHttpServer())
-        .patch("/movies/999")
-        .send({ title: "new title" })
         .expect(404)
     })
   })
